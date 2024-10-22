@@ -10,6 +10,7 @@
 #
 # Copyright (C) 2024
 
+
 import os
 import sys
 import argparse
@@ -17,9 +18,10 @@ from PyPDF2 import PdfWriter, PdfReader
 from pdf2image import convert_from_path, exceptions as pdf2image_exceptions
 from PIL import UnidentifiedImageError
 import io
+from tqdm import tqdm  # Progress bar
 
 
-def split_pdf_pages(input_pdf_path, output_pdf_path):
+def split_pdf_pages(input_pdf_path, output_pdf_path, show_progress=True):
     """
     Splits each page of a PDF file, where each page contains two facing pages,
     into individual pages, and saves the result as a new PDF file.
@@ -27,6 +29,7 @@ def split_pdf_pages(input_pdf_path, output_pdf_path):
     Args:
         input_pdf_path (str): Path to the input PDF file.
         output_pdf_path (str): Path to save the output PDF with split pages.
+        show_progress (bool): Whether to show the progress bar.
 
     Returns:
         None
@@ -37,7 +40,10 @@ def split_pdf_pages(input_pdf_path, output_pdf_path):
         # Convert PDF to images (handle potential PDF conversion issues)
         images = convert_from_path(input_pdf_path)
 
-        for img in images:
+        # Progress bar only if running interactively and show_progress is True
+        progress_bar = tqdm(images, desc="Processing Pages", unit="page") if show_progress else images
+
+        for img in progress_bar:
             width, height = img.size
 
             # Defensive programming: Check if image is not empty
@@ -120,9 +126,12 @@ def main():
         print(f"Error: The directory for the output file '{output_pdf}' does not exist.")
         sys.exit(3)
 
-    # Call the function to split the PDF pages
+    # Check if the script is running in an interactive terminal (for progress bar)
+    is_interactive = sys.stdout.isatty()
+
+    # Call the function to split the PDF pages, pass show_progress based on interactivity
     try:
-        split_pdf_pages(input_pdf, output_pdf)
+        split_pdf_pages(input_pdf, output_pdf, show_progress=is_interactive)
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
