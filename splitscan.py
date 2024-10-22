@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# split_pdf:
+# splitscan:
 #
 # Splits a PDF file containing two scanned physical pages in a single
 # PDF, and generates a new PDF with a single physical page per PDF

@@ -54,7 +54,7 @@ The script accepts two arguments:
 To run the script, use the following command:
 
 ```bash
-python split_pdf.py input.pdf output.pdf
+python splitscan.py input.pdf output.pdf
 ```
 
 Where:
@@ -72,13 +72,13 @@ processed. The progress bar will automatically adjust based on the interactivity
 You can display the help message by running:
 
 ```bash
-python split_pdf.py --help
+python splitscan.py --help
 ```
 
 This will display usage information, including the arguments accepted by the script:
 
 ```
-usage: split_pdf.py [-h] input_pdf output_pdf
+usage: splitscan.py [-h] input_pdf output_pdf
 
 Split a PDF containing two scanned pages per page into individual pages.
 
