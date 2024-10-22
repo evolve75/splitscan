@@ -10,9 +10,9 @@
 #
 # Copyright (C) 2024
 
-
 import os
 import sys
+import argparse
 from PyPDF2 import PdfWriter, PdfReader
 from pdf2image import convert_from_path, exceptions as pdf2image_exceptions
 from PIL import UnidentifiedImageError
@@ -42,7 +42,7 @@ def split_pdf_pages(input_pdf_path, output_pdf_path):
 
             # Defensive programming: Check if image is not empty
             if width == 0 or height == 0:
-                print(f"Error: Image from page is empty or invalid.")
+                print("Error: Image from page is empty or invalid.")
                 sys.exit(1)
 
             # Split into left and right halves
@@ -84,9 +84,25 @@ def split_pdf_pages(input_pdf_path, output_pdf_path):
     sys.exit(0)
 
 
-if __name__ == "__main__":
-    input_pdf = "input.pdf"  # Replace with your input file path
-    output_pdf = "output.pdf"  # Replace with your desired output file path
+def main():
+    # Set up argument parsing
+    parser = argparse.ArgumentParser(
+        description="Split a PDF containing two scanned pages per page into individual pages."
+    )
+    parser.add_argument(
+        "input_pdf",
+        help="Path to the input PDF file."
+    )
+    parser.add_argument(
+        "output_pdf",
+        help="Path to the output PDF file."
+    )
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    input_pdf = args.input_pdf
+    output_pdf = args.output_pdf
 
     # Check if input file exists
     if not os.path.isfile(input_pdf):
@@ -104,8 +120,13 @@ if __name__ == "__main__":
         print(f"Error: The directory for the output file '{output_pdf}' does not exist.")
         sys.exit(3)
 
+    # Call the function to split the PDF pages
     try:
         split_pdf_pages(input_pdf, output_pdf)
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
