@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "pdf2image",
+#     "pillow",
+#     "pypdf2",
+#     "tqdm",
+# ]
+# ///
+
 #
 # splitscan:
 #

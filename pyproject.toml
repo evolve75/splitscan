@@ -1,0 +1,17 @@
+[project]
+name = "splitscan"
+version = "0.1.1"
+description = "Splits each page of a scanned PDF document, where each page contains two facing pages into individual pages."
+authors = [{name = "Anupam Sengupta", email = "anupamsg@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pdf2image>=1.17.0",
+    "pillow>=11.0.0",
+    "pypdf2>=3.0.1",
+    "tqdm>=4.66.5",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
