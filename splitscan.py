@@ -2,10 +2,10 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "pdf2image",
-#     "pillow",
-#     "pypdf2",
-#     "tqdm",
+#     "pdf2image==1.17.0",
+#     "pillow==11.3.0",
+#     "pypdf2==3.0.1",
+#     "tqdm==4.67.1",
 # ]
 # ///
 
@@ -18,7 +18,7 @@
 #
 # Author: Anupam Sengupta (anupamsg@gmail.com)
 #
-# Copyright (C) 2024
+# Copyright (C) 2024, 2025
 
 
 import os
