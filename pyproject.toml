@@ -14,8 +14,8 @@ dependencies = [
 ]
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-splitscan = "splitscan:splitscan_cli.main"
+splitscan = "splitscan.splitscan_cli:main"
